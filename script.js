@@ -444,70 +444,19 @@ function renderFeaturedRecipes() {
 // --- Event Handlers ---
 function handleContactSubmit(event) {
   event.preventDefault();
-  
-  // --- *** ACTION REQUIRED *** ---
-  // 1. Replace this with your own email address
-  const FORM_ENDPOINT = "watscookingin@gmail.com"; 
-  // 2. After you update this, submit the form on your live site ONCE.
-  // 3. Check your email for an activation link from Formsubmit.
-  // 4. Click it. Your form is now live!
-  // ---------------------------------
-
   const form = event.target;
   const submitButton = document.getElementById('contact-submit-button');
   const buttonText = document.getElementById('contact-submit-text');
   const buttonAnimation = document.getElementById('contact-submit-animation');
   const successMessage = document.getElementById('contact-success-message');
 
-  // Get form data
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
+  const name = form.elements.name.value;
+  const email = form.elements.email.value;
+  const message = form.elements.message.value;
 
-  // Disable button and show animation
   submitButton.disabled = true;
   buttonText.classList.add('hidden');
   buttonAnimation.classList.remove('hidden');
-  lucide.createIcons(); // Redraw the 'send' icon for animation
-
-  // Start the "whoosh" animation
-  setTimeout(() => {
-    // After animation, send the data
-    fetch(FORM_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      // Success! Reset form and show success message
-      submitButton.disabled = false;
-      buttonText.classList.remove('hidden');
-      buttonAnimation.classList.add('hidden');
-      successMessage.textContent = "Message Sent! Thank you."; // New message
-      successMessage.classList.remove('hidden');
-      form.reset();
-      
-      // Clear the success message after 4 seconds
-      setTimeout(() => successMessage.classList.add('hidden'), 4000);
-    })
-    .catch((error) => {
-      // Handle errors
-      console.error('Error:', error);
-      submitButton.disabled = false;
-      buttonText.classList.remove('hidden');
-      buttonAnimation.classList.add('hidden');
-      successMessage.textContent = "Error sending message. Please try again.";
-      successMessage.classList.remove('hidden');
-      
-      // Clear the error message after 4 seconds
-      setTimeout(() => successMessage.classList.add('hidden'), 4000);
-    });
-
-  }, 1500); // 1.5 second animation delay matches the "whoosh"
-}
 
   // *** CORE FIX: Redraw the new 'send' icon ***
   lucide.createIcons();
@@ -583,4 +532,3 @@ document.addEventListener('DOMContentLoaded', () => {
   navigateTo('home');
 
 });
-
