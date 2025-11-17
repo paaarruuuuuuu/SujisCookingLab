@@ -407,7 +407,7 @@ function renderRecipeGrid() {
 
 function renderFilterButtons() {
   const container = document.getElementById('recipe-filter-buttons');
-  const categories = ['All', 'Breakfast', 'Rice Dishes', 'Indian Breads', 'Pizza/Pasta/Noodles', 'Veg Curries', 'Non Veg Curries', 'Veg Sides', 'Non Veg Sides', 'Snacks', 'Dinner', 'Beverages', 'Desserts'];
+  const categories = ['All', 'Breakfast', 'Rice Dishes', 'Indian Breads', 'Pizza/Pasta/Noodles', 'Veg Curries', 'Non-Veg Curries', 'Veg Sides', 'Non-Veg Sides', 'Snacks', 'Dinner', 'Beverages', 'Desserts'];
   
   categories.forEach(category => {
     const button = document.createElement('button');
@@ -530,4 +530,5 @@ document.addEventListener('DOMContentLoaded', () => {
   
   // 7. Set initial page state
   navigateTo('home');
+
 });
