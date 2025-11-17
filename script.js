@@ -465,7 +465,7 @@ function handleContactSubmit(event) {
   setTimeout(() => {
     const subject = `Message from ${name} via SujisCookingLab`;
     const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
-    const mailtoLink = `mailto:contact@sujiscookinglab.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const mailtoLink = `mailto:watscookingin@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
     window.location.href = mailtoLink;
 
@@ -532,3 +532,4 @@ document.addEventListener('DOMContentLoaded', () => {
   navigateTo('home');
 
 });
+
