@@ -487,6 +487,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const loadingScreen = document.getElementById('loading-screen');
   const appContent = document.getElementById('app-content');
   const viewCountSpan = document.getElementById('view-count-span');
+  // --- WORKING VIEW COUNTER LOGIC ---
+  let count = localStorage.getItem('siteViewCount');
+  
+  if (count) {
+    // If a count exists, parse it to a number and add 1
+    count = parseInt(count, 10) + 1;
+  } else {
+    // If no count exists, start with a random base number
+    count = 1;
+  }
+  
+  // Save the new, updated count back to storage
+  localStorage.setItem('siteViewCount', count);
+  // --- END OF NEW LOGIC ---
 
   // 1. Set initial theme
   const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
@@ -509,7 +523,7 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFeaturedRecipes();
   
   // 4. Set initial view count
-  viewCountSpan.textContent = (Math.floor(Math.random() * 5000) + 10000).toLocaleString();
+  viewCountSpan.textContent = count.toLocaleString();
 
   // 5. Create Lucide icons
   // This is the main call that runs on page load
