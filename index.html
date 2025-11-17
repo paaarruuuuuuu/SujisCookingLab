@@ -1,13 +1,17 @@
 <!doctype html>
-<html lang="en" class="light"> <head>
+<html lang="en" class="light"> <!-- Start in light mode by default -->
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SujisCookingLab</title>
   
+  <!-- Load Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
+  <!-- Load Lucide icons (standalone JS version) -->
   <script src="https://unpkg.com/lucide@latest"></script>
   
+  <!-- Link to your new external stylesheet -->
   <link rel="stylesheet" href="style.css">
 
   <script>
@@ -28,6 +32,7 @@
 
 <body class="min-h-screen bg-stone-50 dark:bg-black text-stone-800 dark:text-stone-200 transition-colors duration-300">
 
+  <!-- === LOADING SCREEN === -->
   <div id="loading-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-stone-50 dark:bg-black transition-colors duration-300">
     <div class="flex items-center gap-3 text-3xl font-medium font-serif text-stone-800 dark:text-white animate-pulse-subtle">
       <i data-lucide="chef-hat" class="text-amber-600 dark:text-amber-400" style="width: 36px; height: 36px;"></i>
@@ -39,10 +44,13 @@
     </p>
   </div>
 
+  <!-- === MAIN CONTENT (Initially hidden) === -->
   <div id="app-content" class="hidden">
+    <!-- === HEADER === -->
     <header class="sticky top-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md shadow-sm dark:shadow-lg dark:shadow-black/30 border-b border-stone-200 dark:border-gray-800">
       <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-20">
+          <!-- Logo/Title -->
           <button
             onclick="navigateTo('home')"
             class="flex-shrink-0 flex items-center gap-2 text-2xl font-medium font-serif text-stone-800 dark:text-white transition-colors hover:text-amber-600 dark:hover:text-amber-400"
@@ -51,6 +59,7 @@
             SujisCookingLab
           </button>
 
+          <!-- Desktop Nav -->
           <div class="hidden md:flex md:items-center md:space-x-4">
             <button
               id="nav-recipes"
@@ -77,6 +86,7 @@
               Tips & Tricks
             </button>
             
+            <!-- NEW: Socials Button -->
             <button
               id="nav-socials"
               onclick="navigateTo('socials')"
@@ -86,6 +96,7 @@
               Socials
             </button>
             
+            <!-- Theme Toggle Button -->
             <button
               id="theme-toggle"
               class="ml-6 p-2 rounded-full text-stone-600 dark:text-gray-300 hover:bg-stone-100 dark:hover:bg-gray-800 hover:text-amber-600 dark:hover:text-amber-400 transition-all duration-300"
@@ -96,6 +107,7 @@
             </button>
           </div>
 
+          <!-- Mobile Menu Button -->
           <div class="md:hidden flex items-center">
             <button
               id="theme-toggle-mobile"
@@ -117,6 +129,7 @@
         </div>
       </nav>
 
+      <!-- Mobile Menu -->
       <div
         id="mobile-menu"
         class="md:hidden max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out"
@@ -146,6 +159,7 @@
             <i data-lucide="lightbulb" style="width: 18px; height: 18px;"></i>
             Tips & Tricks
           </button>
+          <!-- NEW: Socials Button (Mobile) -->
           <button
             id="mobile-nav-socials"
             onclick="navigateTo('socials')"
@@ -158,9 +172,12 @@
       </div>
     </header>
 
+    <!-- === MAIN CONTENT WRAPPER === -->
     <main id="main-content">
       
+      <!-- --- HOME PAGE --- -->
       <div id="page-home" class="page-content page-fade-in">
+        <!-- Hero Section -->
         <section class="relative h-[60vh] min-h-[400px] flex items-end justify-center text-center text-white px-4 pb-2">
           <div class="absolute inset-0 bg-black/30 z-10"></div>
           <img 
@@ -170,6 +187,7 @@
             onerror="this.src='https://placehold.co/1920x1080/1a1a1a/E0C097'"
           />
           <div class="relative z-20 max-w-3xl -mb-4">
+            <!-- Text removed as requested -->
             <button
               onclick="navigateTo('recipes')"
               class="px-8 py-3 bg-amber-400 text-black font-bold text-lg rounded-lg shadow-lg transition-all duration-300 hover:bg-amber-300 hover:shadow-xl transform hover:-translate-y-1"
@@ -179,14 +197,17 @@
           </div>
         </section>
 
+        <!-- Featured Recipes Section -->
         <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
           <h2 class="text-4xl font-serif font-bold text-center text-stone-800 dark:text-white mb-12">
             Featured Creations
           </h2>
           <div id="featured-recipes" class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            </div>
+            <!-- Recipe cards will be injected here by JS -->
+          </div>
         </section>
 
+        <!-- Home Contact Form Section -->
         <section class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 py-16 bg-white dark:bg-gray-900 rounded-xl shadow-xl dark:shadow-2xl dark:shadow-black/50 border border-stone-200 dark:border-gray-800">
           <h2 class="text-4xl font-serif font-bold text-center text-stone-800 dark:text-white mb-4">
             Get In <span class="text-amber-600 dark:text-amber-400">Touch</span>
@@ -228,17 +249,21 @@
                 </span>
               </button>
               <p id="contact-success-message" class="text-center text-green-600 dark:text-green-500 mt-4 hidden">
-                </p>
+                <!-- JavaScript will add success/error text here -->
+              </p>
             </div>
           </form>
         </section>
       </div>
       
+      <!-- --- RECIPE INDEX PAGE --- -->
       <div id="page-recipes" class="page-content hidden page-fade-in max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 class="text-5xl font-serif font-bold text-center text-stone-800 dark:text-white my-12">
           Recipe Index
         </h1>
+        <!-- Filter and Search Bar -->
         <div class="mb-12 p-6 bg-white dark:bg-gray-900 rounded-xl border border-stone-200 dark:border-gray-800 flex flex-col md:flex-row gap-4 justify-between items-center shadow-sm">
+          <!-- Search -->
           <div class="relative w-full md:w-1/2">
             <input
               type="text"
@@ -248,20 +273,27 @@
             />
             <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500" style="width: 20px; height: 20px;"></i>
           </div>
+          <!-- Filters -->
           <div id="recipe-filter-buttons" class="flex items-center gap-2 flex-wrap justify-center">
             <i data-lucide="filter" class="text-gray-500 hidden sm:block" style="width: 20px; height: 20px;"></i>
-            </div>
-        </div>
-        <div id="recipe-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <!-- Filter buttons will be injected here by JS -->
           </div>
+        </div>
+        <!-- Recipe Grid -->
+        <div id="recipe-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <!-- Recipe cards will be injected here by JS -->
+        </div>
         <p id="recipe-no-results" class="text-center text-stone-600 dark:text-gray-400 text-xl col-span-full hidden">
           No recipes found matching your criteria.
         </p>
       </div>
 
+      <!-- --- RECIPE DETAIL PAGE --- -->
       <div id="page-recipe-detail" class="page-content hidden page-fade-in max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        </div>
+        <!-- Content will be injected here by JS -->
+      </div>
       
+      <!-- --- ABOUT ME PAGE --- -->
       <div id="page-about" class="page-content hidden page-fade-in max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 class="text-5xl font-serif font-bold text-center text-stone-800 dark:text-white mb-12">
           About <span class="text-amber-600 dark:text-amber-400">Suji</span>
@@ -274,6 +306,7 @@
             onerror="this.src='https://placehold.co/400x600/333333/E0C097?text=The+Chef'"
           />
           <div class="p-8 md:p-12">
+            <!-- Main intro paragraph -->
             <div class="text-stone-700 dark:text-gray-300 space-y-4 leading-relaxed">
               <p>
                 Basically I'm from Kerala. I'm a research executive in the field of childcare development & human relations. Puzzled??? Fine. In terms of a layman, I'm a housewife cum mother 😄.
@@ -283,10 +316,12 @@
               </p>
             </div>
   
+            <!-- New Heading -->
             <h2 class="text-3xl font-serif font-bold text-amber-600 dark:text-amber-400 mt-8 mb-4">
               Beginning of Cooking Lab
             </h2>
   
+            <!-- Second part of the story -->
             <div class="text-stone-700 dark:text-gray-300 space-y-4 leading-relaxed">
               <p>
                 A dear friend of mine had started to post pictures in her social networking site of food that she had cooked, and I was greatly intrigued by the whole concept of it. I also happened to see many others do something similar & I thought I'd try it too. I looked at their recipes, and once again, I took easy ones & tried to recreate a dish that looked & tasted as delicious as theirs. I took snaps of those that managed to do well, and posted them in my profile. Since I was experimenting with various ingredients & procedures, my kitchen turned into a cooking lab. I was only able to post photos of my successful attempts, but could not post their recipes as well. So when my friends & my hubby suggested that my dishes were blog worthy, I decided to begin one.
@@ -299,12 +334,14 @@
         </div>
       </div>
       
+      <!-- --- TIPS & TRICKS PAGE --- -->
       <div id="page-tips" class="page-content hidden page-fade-in max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 class="text-5xl font-serif font-bold text-center text-stone-800 dark:text-white mb-12">
           Pro Tips & <span class="text-amber-600 dark:text-amber-400">Tricks</span>
         </h1>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
+          <!-- Tip Card 1 -->
           <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-xl dark:shadow-2xl dark:shadow-black/50 border border-stone-200 dark:border-gray-800 transition-all duration-300 hover:border-amber-600/50 dark:hover:border-amber-400/50 hover:-translate-y-1">
             <div class="text-amber-600 dark:text-amber-400 mb-4">
               <i data-lucide="blend" style="width: 40px; height: 40px; stroke-width: 1.5;"></i>
@@ -316,6 +353,7 @@
               To get really soft chapathis, the trick lies in the kneading. The more you knead, the smoother the dough becomes and the smoother the dough is, the softer the chapathis. Another secret to soft chapathis is using fresh yoghurt or milk instead of water, to make the dough!
             </p>
           </div>
+          <!-- Tip Card 2 -->
           <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-xl dark:shadow-2xl dark:shadow-black/50 border border-stone-200 dark:border-gray-800 transition-all duration-300 hover:border-amber-600/50 dark:hover:border-amber-400/50 hover:-translate-y-1">
             <div class="text-amber-600 dark:text-amber-400 mb-4">
               <i data-lucide="salt" style="width: 40px; height: 40px; stroke-width: 1.5;"></i>
@@ -327,6 +365,7 @@
               Peel and cut a large potato in half and add it to your curry. It will absorb the extra salt.
             </p>
           </div>
+          <!-- Tip Card 3 -->
           <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-xl dark:shadow-2xl dark:shadow-black/50 border border-stone-200 dark:border-gray-800 transition-all duration-300 hover:border-amber-600/50 dark:hover:border-amber-400/50 hover:-translate-y-1">
             <div class="text-amber-600 dark:text-amber-400 mb-4">
               <i data-lucide="bowl" style="width: 40px; height: 40px; stroke-width: 1.5;"></i>
@@ -338,6 +377,7 @@
               Take 3/4th cup of milk, 1/3rd cup of butter and mix well. You'll get 1 cup of cream.
             </p>
           </div>
+          <!-- Tip Card 4 -->
           <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-xl dark:shadow-2xl dark:shadow-black/50 border border-stone-200 dark:border-gray-800 transition-all duration-300 hover:border-amber-600/50 dark:hover:border-amber-400/50 hover:-translate-y-1">
             <div class="text-amber-600 dark:text-amber-400 mb-4">
               <i data-lucide="citrus" style="width: 40px; height: 40px; stroke-width: 1.5;"></i>
@@ -349,6 +389,7 @@
               If you require only half of a lemon while cooking, you can store the remaining half for a few days in the fridge by applying a little salt on the cut portion.
             </p>
           </div>
+          <!-- Tip Card 5 -->
           <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-xl dark:shadow-2xl dark:shadow-black/50 border border-stone-200 dark:border-gray-800 transition-all duration-300 hover:border-amber-600/50 dark:hover:border-amber-400/50 hover:-translate-y-1">
             <div class="text-amber-600 dark:text-amber-400 mb-4">
               <i data-lucide="flame" style="width: 40px; height: 40px; stroke-width: 1.5;"></i>
@@ -364,12 +405,14 @@
         </div>
       </div>
       
+      <!-- *** NEW: SOCIALS PAGE *** -->
       <div id="page-socials" class="page-content hidden page-fade-in max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 class="text-5xl font-serif font-bold text-center text-stone-800 dark:text-white mb-12">
           Follow <span class="text-amber-600 dark:text-amber-400">My Journey</span>
         </h1>
         <div class="space-y-6">
           
+          <!-- YouTube -->
           <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-5 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-stone-200 dark:border-gray-800 transition-all duration-300 hover:border-amber-600/50 dark:hover:border-amber-400/50 hover:shadow-amber-600/20 dark:hover:shadow-amber-400/20 hover:-translate-y-1">
             <i data-lucide="youtube" class="w-10 h-10 text-red-600 flex-shrink-0"></i>
             <div>
@@ -378,6 +421,7 @@
             </div>
           </a>
           
+          <!-- Instagram -->
           <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-5 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-stone-200 dark:border-gray-800 transition-all duration-300 hover:border-amber-600/50 dark:hover:border-amber-400/50 hover:shadow-amber-600/20 dark:hover:shadow-amber-400/20 hover:-translate-y-1">
             <i data-lucide="instagram" class="w-10 h-10 text-pink-600 flex-shrink-0"></i>
             <div>
@@ -386,6 +430,7 @@
             </div>
           </a>
           
+          <!-- Facebook -->
           <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-5 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-stone-200 dark:border-gray-800 transition-all duration-300 hover:border-amber-600/50 dark:hover:border-amber-400/50 hover:shadow-amber-600/20 dark:hover:shadow-amber-400/20 hover:-translate-y-1">
             <i data-lucide="facebook" class="w-10 h-10 text-blue-600 flex-shrink-0"></i>
             <div>
@@ -394,6 +439,7 @@
             </div>
           </a>
           
+          <!-- Pinterest -->
           <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-5 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-stone-200 dark:border-gray-800 transition-all duration-300 hover:border-amber-600/50 dark:hover:border-amber-400/50 hover:shadow-amber-600/20 dark:hover:shadow-amber-400/20 hover:-translate-y-1">
             <i data-lucide="pinterest" class="w-10 h-10 text-red-700 flex-shrink-0"></i>
             <div>
@@ -402,14 +448,16 @@
             </div>
           </a>
           
+          <!-- WhatsApp Channel (FIXED ICON) -->
           <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-5 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-stone-200 dark:border-gray-800 transition-all duration-300 hover:border-amber-600/50 dark:hover:border-amber-400/50 hover:shadow-amber-600/20 dark:hover:shadow-amber-400/20 hover:-translate-y-1">
-            <i data-lucide="message-circle" class="w-10 h-10 text-green-500 flex-shrink-0"></i>
+            <i data-lucide="message-square" class="w-10 h-10 text-green-500 flex-shrink-0"></i>
             <div>
               <h3 class="text-2xl font-serif font-bold text-stone-800 dark:text-white">WhatsApp Channel</h3>
               <p class="text-stone-600 dark:text-gray-400">Get instant updates and exclusive content.</p>
             </div>
           </a>
           
+          <!-- Threads -->
           <a href="#" target="_blank" rel="noopener noreferrer" class="flex items-center gap-5 p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-stone-200 dark:border-gray-800 transition-all duration-300 hover:border-amber-600/50 dark:hover:border-amber-400/50 hover:shadow-amber-600/20 dark:hover:shadow-amber-400/20 hover:-translate-y-1">
             <i data-lucide="at-sign" class="w-10 h-10 text-stone-800 dark:text-white flex-shrink-0"></i>
             <div>
@@ -423,6 +471,7 @@
 
     </main>
 
+    <!-- === FOOTER (Was missing) === -->
     <footer class="bg-white dark:bg-black border-t border-stone-200 dark:border-gray-800 mt-16">
       <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-500 dark:text-gray-500">
         <div class="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-6">
@@ -435,7 +484,11 @@
         <p class="text-xs mt-2">Crafted with passion. Powered by code.</p>
       </div>
     </footer>
-  </div> <script src="script.js" defer></script>
+  </div> <!-- End #app-content -->
+
+  <!-- === Link to your new external script === -->
+  <!-- 'defer' ensures it runs after the HTML is parsed -->
+  <script src="script.js" defer></script>
 
 </body>
 </html>
